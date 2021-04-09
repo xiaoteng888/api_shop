@@ -1,8 +1,8 @@
 <?php 
 return [
     'labels' => [
-        'Products' => 'Products',
-        'products' => 'Products',
+        'Products' => '商品',
+        'products' => '商品',
     ],
     'fields' => [
         'title' => '商品名称',
