@@ -38,7 +38,7 @@ class CartController extends Controller
     }
 
     public function remove(ProductSku $sku,Request $request)
-    {
+    {   
     	$request->user()->cartItems()->where('product_sku_id',$sku->id)->delete();
     	return [];
     }

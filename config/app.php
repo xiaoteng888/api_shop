@@ -229,5 +229,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    //关闭订单时间
+    'order_ttl' => 1800,
 ];
