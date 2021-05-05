@@ -2,11 +2,13 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Order as modelOrder;
 use App\Admin\Repositories\Order;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
 
 class OrdersController extends AdminController
 {
@@ -17,9 +19,10 @@ class OrdersController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Order(), function (Grid $grid) {
+        return Grid::make(new Order(['user']), function (Grid $grid) {
+            $grid->model()->whereNotNull('paid_at')->orderBy('paid_at', 'desc');
             $grid->column('no');
-            $grid->column('user_id');            
+            $grid->column('user.name','姓名');            
             $grid->column('total_amount');            
             $grid->column('paid_at');            
             $grid->column('refund_status');            
@@ -47,29 +50,24 @@ class OrdersController extends AdminController
      *
      * @return Show
      */
-    protected function detail($id)
+    public function show($id,Content $content)
+    {  
+        return $content->header('订单')
+            ->description('查看订单')
+            ->body(view('admin.orders.show',['order' => modelOrder::find($id)]));
+    }
+
+    /*protected function detail($id)
     {
         return Show::make($id, new Order(), function (Show $show) {
-            $show->field('id');
-            $show->field('no');
-            $show->field('user_id');
-            $show->field('address');
-            $show->field('total_amount');
-            $show->field('remark');
-            $show->field('paid_at');
-            $show->field('payment_method');
-            $show->field('payment_no');
-            $show->field('refund_status');
-            $show->field('refund_no');
-            $show->field('closed');
-            $show->field('reviewed');
-            $show->field('ship_status');
-            $show->field('ship_data');
-            $show->field('extra');
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->no('订单流水号');
+            $show->paid_at('支付时间');
+            $show->payment_method('支付方式');
+            $show->payment_no('支付渠道单号');
+            $show->address('地址');
+            $show->total_amount('订单金额');
         });
-    }
+    }*/
 
     /**
      * Make a form builder.
