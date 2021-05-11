@@ -9,9 +9,13 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
+use Illuminate\Http\Request;
+use App\Exceptions\InvalidRequestException;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class OrdersController extends AdminController
 {
+    use ValidatesRequests;
     /**
      * Make a grid builder.
      *
@@ -97,5 +101,31 @@ class OrdersController extends AdminController
             $form->display('created_at');
             $form->display('updated_at');
         });
+    }
+
+    public function ship(modelOrder $order,Request $request)
+    {
+        // 判断当前订单是否已支付
+        if(!$order->paid_at){
+            throw new InvalidRequestException('订单未支付');
+        }
+        // 判断当前订单发货状态是否为未发货
+        if($order->ship_status !== modelOrder::SHIP_STATUS_PENDING){
+            throw new InvalidRequestException('该订单已发货');
+        }
+        // Laravel 5.5 之后 validate 方法可以返回校验过的值
+        $data = $this->validate($request,[
+            'express_company' => ['required'],
+            'express_no' => ['required'],
+        ],[],[
+            'express_company' => '物流公司',
+            'express_no' => '物流单号',
+        ]);
+        // 将订单发货状态改为已发货，并存入物流信息
+        $order->update([
+            'ship_status' => modelOrder::SHIP_STATUS_DELIVERED,
+            'ship_data' => $data,
+        ]);
+        return redirect()->back();
     }
 }
