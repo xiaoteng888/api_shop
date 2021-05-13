@@ -16,13 +16,4 @@ class Order extends EloquentRepository
      */
     protected $eloquentClass = Model::class;
 
-    public function arr($name)
-    {
-        return Order::$name;
-    }
-
-    public function aat(Model $model)
-    {
-    	return $model->user_id;
-    }
 }
