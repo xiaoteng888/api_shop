@@ -11,6 +11,7 @@ use App\Exceptions\InvalidRequestException;
 use App\Http\Requests\SendReviewRequest;
 use Carbon\Carbon;
 use App\Events\OrderReviewed;
+use App\Http\Requests\ApplyRefundRequest;
 
 class OrdersController extends Controller
 {
@@ -90,5 +91,29 @@ class OrdersController extends Controller
         });
         event(new OrderReviewed($order)); 
         return redirect()->back();
+    }
+
+    public function applyRefund(Order $order,ApplyRefundRequest $request)
+    {
+        // 校验订单是否属于当前用户
+        $this->authorize('own',$order);
+        // 判断订单是否已付款
+        if(!$order->paid_at){
+            throw new InvalidRequestException('该订单未付款'); 
+        }
+        //判断订单退款状态是否正确
+        if($order->refund_status !== Order::REFUND_STATUS_PENDING){
+            throw new InvalidRequestException('该订单已申请过退款，请勿重复提交');
+        }
+        // 将用户输入的退款理由放到订单的 extra 字段中
+        $extra = $order->extra ? : [];
+        $extra['refund_reason'] = $request->input('reason');
+
+        $order->update([
+            'extra' => $extra,
+            'refund_status' => Order::REFUND_STATUS_APPLIED,
+        ]);
+
+        return $order;
     }
 }

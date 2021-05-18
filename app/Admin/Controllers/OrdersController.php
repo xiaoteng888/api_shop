@@ -29,8 +29,12 @@ class OrdersController extends AdminController
             $grid->column('user.name','姓名');            
             $grid->column('total_amount');            
             $grid->column('paid_at');            
-            $grid->column('refund_status');            
-            $grid->column('ship_status');
+            $grid->column('refund_status')->display(function($v){
+                return modelOrder::$refundStatusMap[$v];
+            });            
+            $grid->column('ship_status')->display(function($v){
+                return modelOrder::$shipStatusMap[$v];
+            });
             $grid->disableCreateButton();
             $grid->actions(function ($actions) {
                 // 禁用删除和编辑按钮
