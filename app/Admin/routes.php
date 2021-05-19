@@ -17,4 +17,5 @@ Route::group([
     $router->resource('products','ProductsController');
     $router->resource('orders','OrdersController');
     $router->post('orders/{order}/ship','OrdersController@ship')->name('orders.ship');
+    $router->post('orders/{order}/refund','OrdersController@handleRefund')->name('orders.handle_refund');
 });
