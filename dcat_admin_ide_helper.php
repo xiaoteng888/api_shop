@@ -11,6 +11,12 @@ namespace Dcat\Admin {
     use Illuminate\Support\Collection;
 
     /**
+     * @property Grid\Column|Collection no
+     * @property Grid\Column|Collection paid_at
+     * @property Grid\Column|Collection payment_method
+     * @property Grid\Column|Collection payment_no
+     * @property Grid\Column|Collection address
+     * @property Grid\Column|Collection total_amount
      * @property Grid\Column|Collection id
      * @property Grid\Column|Collection name
      * @property Grid\Column|Collection type
@@ -38,6 +44,13 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection remember_token
      * @property Grid\Column|Collection product_sku_id
      * @property Grid\Column|Collection amount
+     * @property Grid\Column|Collection code
+     * @property Grid\Column|Collection total
+     * @property Grid\Column|Collection used
+     * @property Grid\Column|Collection min_amount
+     * @property Grid\Column|Collection not_before
+     * @property Grid\Column|Collection not_after
+     * @property Grid\Column|Collection enabled
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
@@ -49,13 +62,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection rating
      * @property Grid\Column|Collection review
      * @property Grid\Column|Collection reviewed_at
-     * @property Grid\Column|Collection no
-     * @property Grid\Column|Collection address
-     * @property Grid\Column|Collection total_amount
      * @property Grid\Column|Collection remark
-     * @property Grid\Column|Collection paid_at
-     * @property Grid\Column|Collection payment_method
-     * @property Grid\Column|Collection payment_no
+     * @property Grid\Column|Collection coupon_code_id
      * @property Grid\Column|Collection refund_status
      * @property Grid\Column|Collection refund_no
      * @property Grid\Column|Collection closed
@@ -79,6 +87,12 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection last_used_at
      * @property Grid\Column|Collection email_verified_at
      *
+     * @method Grid\Column|Collection no(string $label = null)
+     * @method Grid\Column|Collection paid_at(string $label = null)
+     * @method Grid\Column|Collection payment_method(string $label = null)
+     * @method Grid\Column|Collection payment_no(string $label = null)
+     * @method Grid\Column|Collection address(string $label = null)
+     * @method Grid\Column|Collection total_amount(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
@@ -106,6 +120,13 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection remember_token(string $label = null)
      * @method Grid\Column|Collection product_sku_id(string $label = null)
      * @method Grid\Column|Collection amount(string $label = null)
+     * @method Grid\Column|Collection code(string $label = null)
+     * @method Grid\Column|Collection total(string $label = null)
+     * @method Grid\Column|Collection used(string $label = null)
+     * @method Grid\Column|Collection min_amount(string $label = null)
+     * @method Grid\Column|Collection not_before(string $label = null)
+     * @method Grid\Column|Collection not_after(string $label = null)
+     * @method Grid\Column|Collection enabled(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
@@ -117,13 +138,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection rating(string $label = null)
      * @method Grid\Column|Collection review(string $label = null)
      * @method Grid\Column|Collection reviewed_at(string $label = null)
-     * @method Grid\Column|Collection no(string $label = null)
-     * @method Grid\Column|Collection address(string $label = null)
-     * @method Grid\Column|Collection total_amount(string $label = null)
      * @method Grid\Column|Collection remark(string $label = null)
-     * @method Grid\Column|Collection paid_at(string $label = null)
-     * @method Grid\Column|Collection payment_method(string $label = null)
-     * @method Grid\Column|Collection payment_no(string $label = null)
+     * @method Grid\Column|Collection coupon_code_id(string $label = null)
      * @method Grid\Column|Collection refund_status(string $label = null)
      * @method Grid\Column|Collection refund_no(string $label = null)
      * @method Grid\Column|Collection closed(string $label = null)
@@ -152,6 +168,12 @@ namespace Dcat\Admin {
     class MiniGrid extends Grid {}
 
     /**
+     * @property Show\Field|Collection no
+     * @property Show\Field|Collection paid_at
+     * @property Show\Field|Collection payment_method
+     * @property Show\Field|Collection payment_no
+     * @property Show\Field|Collection address
+     * @property Show\Field|Collection total_amount
      * @property Show\Field|Collection id
      * @property Show\Field|Collection name
      * @property Show\Field|Collection type
@@ -179,6 +201,13 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection remember_token
      * @property Show\Field|Collection product_sku_id
      * @property Show\Field|Collection amount
+     * @property Show\Field|Collection code
+     * @property Show\Field|Collection total
+     * @property Show\Field|Collection used
+     * @property Show\Field|Collection min_amount
+     * @property Show\Field|Collection not_before
+     * @property Show\Field|Collection not_after
+     * @property Show\Field|Collection enabled
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
@@ -190,13 +219,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection rating
      * @property Show\Field|Collection review
      * @property Show\Field|Collection reviewed_at
-     * @property Show\Field|Collection no
-     * @property Show\Field|Collection address
-     * @property Show\Field|Collection total_amount
      * @property Show\Field|Collection remark
-     * @property Show\Field|Collection paid_at
-     * @property Show\Field|Collection payment_method
-     * @property Show\Field|Collection payment_no
+     * @property Show\Field|Collection coupon_code_id
      * @property Show\Field|Collection refund_status
      * @property Show\Field|Collection refund_no
      * @property Show\Field|Collection closed
@@ -220,6 +244,12 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection last_used_at
      * @property Show\Field|Collection email_verified_at
      *
+     * @method Show\Field|Collection no(string $label = null)
+     * @method Show\Field|Collection paid_at(string $label = null)
+     * @method Show\Field|Collection payment_method(string $label = null)
+     * @method Show\Field|Collection payment_no(string $label = null)
+     * @method Show\Field|Collection address(string $label = null)
+     * @method Show\Field|Collection total_amount(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
@@ -247,6 +277,13 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection remember_token(string $label = null)
      * @method Show\Field|Collection product_sku_id(string $label = null)
      * @method Show\Field|Collection amount(string $label = null)
+     * @method Show\Field|Collection code(string $label = null)
+     * @method Show\Field|Collection total(string $label = null)
+     * @method Show\Field|Collection used(string $label = null)
+     * @method Show\Field|Collection min_amount(string $label = null)
+     * @method Show\Field|Collection not_before(string $label = null)
+     * @method Show\Field|Collection not_after(string $label = null)
+     * @method Show\Field|Collection enabled(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
@@ -258,13 +295,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection rating(string $label = null)
      * @method Show\Field|Collection review(string $label = null)
      * @method Show\Field|Collection reviewed_at(string $label = null)
-     * @method Show\Field|Collection no(string $label = null)
-     * @method Show\Field|Collection address(string $label = null)
-     * @method Show\Field|Collection total_amount(string $label = null)
      * @method Show\Field|Collection remark(string $label = null)
-     * @method Show\Field|Collection paid_at(string $label = null)
-     * @method Show\Field|Collection payment_method(string $label = null)
-     * @method Show\Field|Collection payment_no(string $label = null)
+     * @method Show\Field|Collection coupon_code_id(string $label = null)
      * @method Show\Field|Collection refund_status(string $label = null)
      * @method Show\Field|Collection refund_no(string $label = null)
      * @method Show\Field|Collection closed(string $label = null)
