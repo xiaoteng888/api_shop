@@ -24,9 +24,9 @@ class OrdersSeeder extends Seeder
         	// 每笔订单随机 1 - 3 个商品
         	$items = factory(OrderItem::class,random_int(1, 3))->create([
         		'order_id' => $v->id,
-        		'rating' => $order->reviewed ? random_int(1, 5) : null,
-        		'review' => $order->reviewed ? $faker->sentence : null,
-        		'reviewed_at' => $order->reviewed ? $faker->dateTimeBetween($order->paid_at) : null,// 评价时间不能早于支付时间
+        		'rating' => $v->reviewed ? random_int(1, 5) : null,
+        		'review' => $v->reviewed ? $faker->sentence : null,
+        		'reviewed_at' => $v->reviewed ? $faker->dateTimeBetween($v->paid_at) : null,// 评价时间不能早于支付时间
         	]);
         	// 计算总价
         	$total = $items->sum(function(OrderItem $item){
@@ -47,12 +47,11 @@ class OrdersSeeder extends Seeder
         		// 查出该商品的销量、评分、评价数
         		$result = OrderItem::query()
         		      ->where('product_id',$product->id)
-        		      ->whereNotNull('reviewed_at')
         		      ->whereHas('order',function($query){
         		      	$query->whereNotNull('paid_at');
         		      })
         		      ->first([
-        		      	\DB::raw('count(*) as review_count'),
+        		      	\DB::raw('count(reviewed_at) as review_count'),
         		      	\DB::raw('avg(rating) as rating'),
         		      	\DB::raw('sum(amount) as sold_count'),
         		      ]);
