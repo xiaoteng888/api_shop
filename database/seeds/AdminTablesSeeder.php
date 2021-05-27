@@ -198,6 +198,30 @@ class AdminTablesSeeder extends Seeder
                     "show" => 1,
                     "created_at" => "2021-05-19 20:35:56",
                     "updated_at" => "2021-05-19 20:35:56"
+                ],
+                [
+                    "id" => 16,
+                    "parent_id" => 0,
+                    "order" => 16,
+                    "title" => "类目管理",
+                    "icon" => "fa-server",
+                    "uri" => NULL,
+                    "extension" => "",
+                    "show" => 1,
+                    "created_at" => "2021-05-27 13:35:20",
+                    "updated_at" => "2021-05-27 13:44:33"
+                ],
+                [
+                    "id" => 17,
+                    "parent_id" => 16,
+                    "order" => 17,
+                    "title" => "类目管理列表",
+                    "icon" => "fa-angle-double-right",
+                    "uri" => "categories",
+                    "extension" => "",
+                    "show" => 1,
+                    "created_at" => "2021-05-27 13:45:27",
+                    "updated_at" => "2021-05-27 13:45:27"
                 ]
             ]
         );

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 
 class Category extends Model
 {
+    use HasDateTimeFormatter;
     protected $fillable = ['name','is_directory','level','path'];
     protected $casts = ['is_directory'];
 

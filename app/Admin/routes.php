@@ -19,4 +19,6 @@ Route::group([
     $router->post('orders/{order}/ship','OrdersController@ship')->name('orders.ship');
     $router->post('orders/{order}/refund','OrdersController@handleRefund')->name('orders.handle_refund');
     $router->resource('coupon_codes','CouponCodesController');
+    $router->resource('categories','CategoryController');
+    $router->get('api/categories','CategoryController@apiIndex')->name('api.categories');
 });
