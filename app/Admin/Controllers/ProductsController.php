@@ -7,6 +7,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use App\Models\Category;
 
 class ProductsController extends AdminController
 {
@@ -18,8 +19,10 @@ class ProductsController extends AdminController
     protected function grid()
     {
         return Grid::make(new Product(), function (Grid $grid) {
+            $grid->model()->with(['category']);
             $grid->column('id')->sortable();
             $grid->column('title');
+            $grid->column('category.name','类目');
             $grid->column('on_sale');
             $grid->column('price');
             $grid->column('rating');
@@ -67,6 +70,13 @@ class ProductsController extends AdminController
         return Form::make(new Product('skus'), function (Form $form) {
             $form->display('id');
             $form->text('title');
+            // 添加一个类目字段，与之前类目管理类似，使用 Ajax 的方式来搜索添加
+            $form->select('category_id','类目')->options(function($id){
+                $category = Category::find($id);
+                if($category){
+                    return [$category->id => $category->full_name];
+                }
+            })->ajax('/api/categories?is_directory=0');
             $form->editor('description');
             $form->image('image');
             $form->radio('on_sale')->options(['1'=>'是','0'=>'否'])->default('0');
