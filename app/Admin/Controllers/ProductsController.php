@@ -8,6 +8,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use App\Models\Category;
+use App\Models\Product as modelProduct;
 
 class ProductsController extends AdminController
 {
@@ -77,8 +78,8 @@ class ProductsController extends AdminController
                     return [$category->id => $category->full_name];
                 }
             })->ajax('/api/categories?is_directory=0');
-            $form->editor('description');
-            $form->image('image');
+            $form->editor('description')->rules('required');
+            $form->image('image')->removable(false)->rules('required');
             $form->radio('on_sale')->options(['1'=>'是','0'=>'否'])->default('0');
             $form->hasMany('skus','SKU 列表',function(Form\NestedForm $form){
                 $form->text('title','SKU 名称');
@@ -86,9 +87,11 @@ class ProductsController extends AdminController
                 $form->text('price', '单价')->rules('required|numeric|min:0.01');
                 $form->text('stock', '剩余库存')->rules('required|integer|min:0');
             });
+            $form->display('price');
             // 定义事件回调，当模型即将保存时会触发这个回调
             $form->saving(function(Form $form){
-                $form->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME,0)->min('price') ? : 0;
+                $form->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price') ?: 0;
+                //dd($form->input());
             });
             
         });
