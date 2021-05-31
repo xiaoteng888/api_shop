@@ -164,6 +164,9 @@
             });
             html += '</div>';
             swal({content: $(html)[0], icon: 'error'})
+          } else if (error.response && (error.response.data.msg || error.response.data.message)) {
+            // 其他有 msg 或者 message 字段的情况，将 msg 提示给用户
+            swal(error.response.data.msg ? error.response.data.msg : error.response.data.message, '', 'error');
           } else {
 
             // 其他情况应该是系统挂了
