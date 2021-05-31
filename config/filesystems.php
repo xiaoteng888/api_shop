@@ -65,12 +65,12 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
-        /*'admin' => [
+        'admin' => [
         'driver' => 'local',
         'root' => public_path('uploads'),
         'visibility' => 'public',
-        'url' => env('APP_URL').'/uploads',
-        ],*/
+        'url' => env('APP_URL','http://shop05-test.herokuapp.com').'/uploads',
+        ],
 
     ],
 
