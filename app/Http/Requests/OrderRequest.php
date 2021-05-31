@@ -54,6 +54,7 @@ class OrderRequest extends Request
     public function messages()
     {
         return [
+            'address_id.required' => '请选择收货地址',
             'items.required' => '请选择一个商品',
             'items.*.amount.min' => '商品数量必须大于等于1',
         ];

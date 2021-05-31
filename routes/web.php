@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@root')->name('root');
 
-Auth::routes(['verify' => false]);
+Auth::routes();
 // auth 中间件代表需要登录，verified中间件代表需要经过邮箱验证
 Route::group(['middleware'=>['auth']],function(){
 	Route::get('user_addresses','UserAddressesController@index')->name('user_addresses.index');
