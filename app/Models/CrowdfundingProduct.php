@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 
 class CrowdfundingProduct extends Model
 {
+    use HasDateTimeFormatter;
     // 定义众筹的 3 种状态
     const STATUS_FUNDING = 'funding';
     const STATUS_SUCCESS = 'success';

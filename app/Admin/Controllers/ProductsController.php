@@ -20,7 +20,7 @@ class ProductsController extends AdminController
     protected function grid()
     {
         return Grid::make(new Product(), function (Grid $grid) {
-            $grid->model()->with(['category']);
+            $grid->model()->where('type',modelProduct::TYPE_NORMAL)->with(['category']);
             $grid->column('id')->sortable();
             $grid->column('title');
             $grid->column('category.name','类目');
@@ -70,6 +70,8 @@ class ProductsController extends AdminController
     {
         return Form::make(new Product('skus'), function (Form $form) {
             $form->display('id');
+            // 在表单中添加一个名为 type，值为 Product::TYPE_NORMAL 的隐藏字段
+            $form->hidden('type')->value(modelProduct::TYPE_NORMAL);
             $form->text('title');
             // 添加一个类目字段，与之前类目管理类似，使用 Ajax 的方式来搜索添加
             $form->select('category_id','类目')->options(function($id){
@@ -87,7 +89,7 @@ class ProductsController extends AdminController
                 $form->text('price', '单价')->rules('required|numeric|min:0.01');
                 $form->text('stock', '剩余库存')->rules('required|integer|min:0');
             });
-            $form->display('price');
+            //$form->display('price');
             // 定义事件回调，当模型即将保存时会触发这个回调
             $form->saving(function(Form $form){
                 $form->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price') ?: 0;

@@ -222,6 +222,18 @@ class AdminTablesSeeder extends Seeder
                     "show" => 1,
                     "created_at" => "2021-05-27 13:45:27",
                     "updated_at" => "2021-05-27 13:45:27"
+                ],
+                [
+                    "id" => 18,
+                    "parent_id" => 10,
+                    "order" => 18,
+                    "title" => "众筹商品",
+                    "icon" => "fa-cubes",
+                    "uri" => "crowdfunding_products",
+                    "extension" => "",
+                    "show" => 1,
+                    "created_at" => "2021-06-15 20:36:36",
+                    "updated_at" => "2021-06-15 20:36:36"
                 ]
             ]
         );

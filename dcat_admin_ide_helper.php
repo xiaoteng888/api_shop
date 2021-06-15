@@ -54,13 +54,17 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection not_before
      * @property Grid\Column|Collection not_after
      * @property Grid\Column|Collection enabled
+     * @property Grid\Column|Collection product_id
+     * @property Grid\Column|Collection target_amount
+     * @property Grid\Column|Collection user_count
+     * @property Grid\Column|Collection end_at
+     * @property Grid\Column|Collection status
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection order_id
-     * @property Grid\Column|Collection product_id
      * @property Grid\Column|Collection price
      * @property Grid\Column|Collection rating
      * @property Grid\Column|Collection review
@@ -134,13 +138,17 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection not_before(string $label = null)
      * @method Grid\Column|Collection not_after(string $label = null)
      * @method Grid\Column|Collection enabled(string $label = null)
+     * @method Grid\Column|Collection product_id(string $label = null)
+     * @method Grid\Column|Collection target_amount(string $label = null)
+     * @method Grid\Column|Collection user_count(string $label = null)
+     * @method Grid\Column|Collection end_at(string $label = null)
+     * @method Grid\Column|Collection status(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection order_id(string $label = null)
-     * @method Grid\Column|Collection product_id(string $label = null)
      * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection rating(string $label = null)
      * @method Grid\Column|Collection review(string $label = null)
@@ -219,13 +227,17 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection not_before
      * @property Show\Field|Collection not_after
      * @property Show\Field|Collection enabled
+     * @property Show\Field|Collection product_id
+     * @property Show\Field|Collection target_amount
+     * @property Show\Field|Collection user_count
+     * @property Show\Field|Collection end_at
+     * @property Show\Field|Collection status
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection order_id
-     * @property Show\Field|Collection product_id
      * @property Show\Field|Collection price
      * @property Show\Field|Collection rating
      * @property Show\Field|Collection review
@@ -299,13 +311,17 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection not_before(string $label = null)
      * @method Show\Field|Collection not_after(string $label = null)
      * @method Show\Field|Collection enabled(string $label = null)
+     * @method Show\Field|Collection product_id(string $label = null)
+     * @method Show\Field|Collection target_amount(string $label = null)
+     * @method Show\Field|Collection user_count(string $label = null)
+     * @method Show\Field|Collection end_at(string $label = null)
+     * @method Show\Field|Collection status(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection order_id(string $label = null)
-     * @method Show\Field|Collection product_id(string $label = null)
      * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection rating(string $label = null)
      * @method Show\Field|Collection review(string $label = null)
