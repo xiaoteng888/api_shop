@@ -2,22 +2,39 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\Product;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Show;
-use Dcat\Admin\Http\Controllers\AdminController;
-use App\Models\Category;
 use App\Models\Product as modelProduct;
 
-class ProductsController extends AdminController
+class ProductsController extends CommonProductsController
 {
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
-    protected function grid()
+    
+    public function getProductType()
+    {
+        return modelProduct::TYPE_NORMAL;
+    }
+
+    protected function customGrid(Grid $grid)
+    {
+        $grid->model()->with(['category']);
+        $grid->column('id')->sortable();
+        $grid->column('title');
+        $grid->column('category.name','类目');
+        $grid->column('on_sale')->display(function ($v){
+            return $v ? '是' : '否';
+        });
+        $grid->column('price');
+        $grid->column('rating');
+        $grid->column('sold_count');
+        $grid->column('review_count');
+    }
+
+    protected function customForm(Form $form)
+    {
+        // 普通商品没有额外的字段，因此这里不需要写任何代码
+    } 
+
+    /*protected function grid()
     {
         return Grid::make(new Product(), function (Grid $grid) {
             $grid->model()->where('type',modelProduct::TYPE_NORMAL)->with(['category']);
@@ -38,35 +55,11 @@ class ProductsController extends AdminController
     }
 
     /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    /*protected function detail($id)
-    {
-        return Show::make($id, new Product(), function (Show $show) {
-            $show->field('id');
-            $show->field('title');
-            $show->field('description');
-            $show->field('image');
-            $show->field('on_sale');
-            $show->field('rating');
-            $show->field('sold_count');
-            $show->field('review_count');
-            $show->field('price');
-            $show->field('created_at');
-            $show->field('updated_at');
-        });
-    }*/
-
-    /**
      * Make a form builder.
      *
      * @return Form
      */
-    protected function form()
+ /*   protected function form()
     {
         return Form::make(new Product('skus'), function (Form $form) {
             $form->display('id');
@@ -97,5 +90,5 @@ class ProductsController extends AdminController
             });
             
         });
-    }
+    }*/
 }
