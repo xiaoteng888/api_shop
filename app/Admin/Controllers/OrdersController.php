@@ -14,6 +14,7 @@ use App\Exceptions\InvalidRequestException;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Http\Requests\Admin\HandleRefundRequest;
 use App\Exceptions\InternalException;
+use App\Models\CrowdfundingProduct;
 
 class OrdersController extends AdminController
 {
@@ -116,6 +117,10 @@ class OrdersController extends AdminController
         // 判断当前订单是否已支付
         if(!$order->paid_at){
             throw new InvalidRequestException('订单未支付');
+        }
+        // 判断当前订单是不是众筹成功订单
+        if($order->type === CrowdfundingProduct::TYPE_CROWDFUNDING && $order->item[0]->product->crowdfunding->status !==CrowdfundingProduct::STATUS_SUCCESS){
+            throw new InvalidRequestException('该众筹订单还没成功');
         }
         // 判断当前订单发货状态是否为未发货
         if($order->ship_status !== modelOrder::SHIP_STATUS_PENDING){
