@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Models\Order;
 
-class UpdateCrowdfundingProductProgress
+class UpdateCrowdfundingProductProgress implements ShouldQueue
 {
     
     /**
@@ -22,13 +22,13 @@ class UpdateCrowdfundingProductProgress
         $order = $event->getOrder();
         // 如果订单类型不是众筹商品订单，无需处理
         if($order->type !== Order::TYPE_CROWDFUNDING){
-            return ;
+            return;
         }
         $crowdfunding = $order->items[0]->product->crowdfunding;
         $data = Order::query()
                 ->where('type',Order::TYPE_CROWDFUNDING)
                 ->whereNotNull('paid_at')
-                ->whereHas('items',function($query){
+                ->whereHas('items',function($query) use($crowdfunding){
                     $query->where('product_id',$crowdfunding->product_id);
                 })
                 ->first([
