@@ -127,17 +127,19 @@ class OrderService
     public function refundOrder(Order $order)
     {
         // 判断该订单的支付方式
-        swith($order->payment_method){
+        switch($order->payment_method){
             case 'wechat':
+                  // 微信的先留空
+                  // todo
                   break;
             case 'alipay':
             // 用我们刚刚写的方法来生成一个退款订单号
-            $refund_no = modelOrder::getAvailableRefundNo();
+            $refundNo = Order::getAvailableRefundNo();
             // 调用支付宝支付实例的 refund 方法
             $res = app('alipay')->refund([
                 'out_trade_no' => $order->no,
                 'refund_amount' => $order->total_amount,
-                'out_request_no' => $refund_no
+                'out_request_no' => $refundNo
             ]);
             // 根据支付宝的文档，如果返回值里有 sub_code 字段说明退款失败
             if($res->sub_code){
@@ -146,15 +148,15 @@ class OrderService
                 $extra['refund_faild_code'] = $res->sub_code;
                 // 将订单的退款状态标记为退款失败
                 $order->update([
-                    'refund_status' => modelOrder::REFUND_STATUS_FAILED,
+                    'refund_status' => Order::REFUND_STATUS_FAILED,
                     'extra' => $extra,
-                    'refund_no' => $refund_no,
+                    'refund_no' => $refundNo,
                 ]);
             }else{
                 // 将订单的退款状态标记为退款成功并保存退款订单号
                 $order->update([
-                    'refund_status' => modelOrder::REFUND_STATUS_SUCCESS,
-                    'refund_no' => $refund_no,
+                    'refund_status' => Order::REFUND_STATUS_SUCCESS,
+                    'refund_no' => $refundNo,
                 ]);
             }
             break;
@@ -164,4 +166,50 @@ class OrderService
             break;
         }
     }
+    /*public function refundOrder(Order $order)
+    {
+        // 判断该订单的支付方式
+        switch ($order->payment_method) {
+            case 'wechat':
+                // 生成退款订单号
+                $refundNo = Order::getAvailableRefundNo();
+                app('wechat_pay')->refund([
+                    'out_trade_no' => $order->no,
+                    'total_fee' => $order->total_amount * 100,
+                    'refund_fee' => $order->total_amount * 100,
+                    'out_refund_no' => $refundNo,
+                    'notify_url' => ngrok_url('payment.wechat.refund_notify'),
+                ]);
+                $order->update([
+                    'refund_no' => $refundNo,
+                    'refund_status' => Order::REFUND_STATUS_PROCESSING,
+                ]);
+                break;
+            case 'alipay':
+                $refundNo = Order::getAvailableRefundNo();
+                $ret = app('alipay')->refund([
+                    'out_trade_no' => $order->no,
+                    'refund_amount' => $order->total_amount,
+                    'out_request_no' => $refundNo,
+                ]);
+                if ($ret->sub_code) {
+                    $extra = $order->extra;
+                    $extra['refund_failed_code'] = $ret->sub_code;
+                    $order->update([
+                        'refund_no' => $refundNo,
+                        'refund_status' => Order::REFUND_STATUS_FAILED,
+                        'extra' => $extra,
+                    ]);
+                } else {
+                    $order->update([
+                        'refund_no' => $refundNo,
+                        'refund_status' => Order::REFUND_STATUS_SUCCESS,
+                    ]);
+                }
+                break;
+            default:
+                throw new InternalException('未知订单支付方式：'.$order->payment_method);
+                break;
+        }
+    }*/
 }

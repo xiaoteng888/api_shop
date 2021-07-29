@@ -120,7 +120,7 @@ class OrdersController extends AdminController
             throw new InvalidRequestException('订单未支付');
         }
         // 判断当前订单是不是众筹成功订单
-        if($order->type === CrowdfundingProduct::TYPE_CROWDFUNDING && $order->item[0]->product->crowdfunding->status !==CrowdfundingProduct::STATUS_SUCCESS){
+        if($order->type === modelOrder::TYPE_CROWDFUNDING && $order->items[0]->product->crowdfunding->status !==CrowdfundingProduct::STATUS_SUCCESS){
             throw new InvalidRequestException('该众筹订单还没成功');
         }
         // 判断当前订单发货状态是否为未发货
@@ -172,7 +172,7 @@ class OrdersController extends AdminController
         return $order;
     }
 
-    /*public function _refundOrer(modelOrder $order)
+    /*public function _refundOrder(modelOrder $order)
     {
         // 判断该订单的支付方式
         switch($order->payment_method){

@@ -38,6 +38,7 @@ class RefundCrowdfundingOrders implements ShouldQueue
             return;
         }
         $orderService = app(OrderService::class);
+        
         // 查询出所有参与了此众筹的订单
         Order::query()
              ->where('type',Order::TYPE_CROWDFUNDING)
@@ -47,7 +48,7 @@ class RefundCrowdfundingOrders implements ShouldQueue
                 $query->where('product_id',$this->crowdfunding->product_id);
              })
              ->get()
-             ->each(function(Order $order){
+             ->each(function(Order $order) use ($orderService) {
                 $orderService->refundOrder($order);
         });
     }
