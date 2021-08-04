@@ -12,6 +12,7 @@ use App\Jobs\CloseOrder;
 use App\Models\CouponCode;
 use App\Exceptions\CouponCodeUnavailableException;
 use App\Exceptions\InternalException;
+use App\Jobs\RefundInstallmentOrder;
 
 class OrderService
 {
@@ -159,6 +160,14 @@ class OrderService
                     'refund_no' => $refundNo,
                 ]);
             }
+            break;
+            case 'installment':
+                $order->update([
+                    'refund_no' => Order::getAvailableRefundNo(),
+                    'refund_status' => Order::REFUND_STATUS_PROCESSING,
+                ]);
+                //触发异步任务队列
+                dispatch(new RefundInstallmentOrder($order));
             break;
             default:
             // 原则上不可能出现，这个只是为了代码健壮性
