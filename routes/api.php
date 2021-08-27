@@ -24,6 +24,8 @@ Route::prefix('v1')
            ->group(function(){
 
             Route::middleware('throttle:'.config('api.rate_limits.sign'))->group(function(){
+                //图片验证码
+                Route::post('captchas','CaptchasController@store')->name('captchas.store');
                 //短信验证码
                 Route::post('verificationCodes','VerificationCodesController@store')->name('verificationCodes.store');
                 //用户注册路由
@@ -31,7 +33,7 @@ Route::prefix('v1')
             });
     
             Route::middleware('throttle:'.config('api.rate_limits.access'))->group(function(){
-                
+
             });
 });
 
