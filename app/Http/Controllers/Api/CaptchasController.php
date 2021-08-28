@@ -13,7 +13,7 @@ class CaptchasController extends Controller
     {
         $key = 'captcha_key' .Str::random(15);
         //  创建验证码 create(生成验证码方式，是否api接口)
-        $captcha = $captchaBuilder->create('default',true);
+        $captcha = $captchaBuilder->create('flat',true);
         /*
         创建的验证码为数组格式：
         'sensitive' => $generator['sensitive'],

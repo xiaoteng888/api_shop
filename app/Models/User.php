@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail,JWTSubject
 {
     use Notifiable;
 
@@ -52,6 +53,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cartItems()
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    //getJWTIdentifier 返回了 User 的 id，getJWTCustomClaims 是我们需要额外在 JWT 载荷中增加的自定义内容，这里返回空数组。打开 tinker，执行如下代码，尝试生成一个 token。
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 
 }

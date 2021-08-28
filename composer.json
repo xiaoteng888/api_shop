@@ -20,6 +20,7 @@
         "mews/captcha": "~3.0",
         "moontoast/math": "^1.2",
         "overtrue/laravel-lang": "^4.2",
+        "tymon/jwt-auth": "^1.0",
         "yansongda/pay": "^2.10"
     },
     "require-dev": {
