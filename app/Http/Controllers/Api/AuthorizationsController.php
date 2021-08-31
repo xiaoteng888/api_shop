@@ -13,7 +13,7 @@ class AuthorizationsController extends Controller
         $username = $request->username;
         filter_var($username,FILTER_VALIDATE_EMAIL) ? $data['email'] = $username : $data['phone'] = $username;
         $data['password'] = $request->password;
-        if(!$token = \Auth::guard('api')->attempt($data)){
+        if(!$token = \Auth::guard('api')->attempt($data,$request->has('remember'))){
             throw new InvalidRequestException('帐号或密码不正确',401);
         }
 

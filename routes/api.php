@@ -28,8 +28,10 @@ Route::prefix('v1')
                 Route::post('captchas','CaptchasController@store')->name('captchas.store');
                 //短信验证码
                 Route::post('verificationCodes','VerificationCodesController@store')->name('verificationCodes.store');
-                //用户注册路由
+                //用户手机注册路由
                 Route::post('users','UsersController@store')->name('users.store');
+                //用户邮箱注册路由
+                Route::post('userEmails','UsersController@emailStore')->name('userEmails.store');
                 //登录
                 Route::post('authorizations','AuthorizationsController@store')->name('authorizations.store');
                 //刷新token
