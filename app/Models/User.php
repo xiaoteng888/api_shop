@@ -66,4 +66,13 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
         return [];
     }
 
+    public function setPasswordAttribute($value)
+    {
+        if(strlen($value) != 60){
+            $value = bcrypt($value);
+        }
+        $this->attributes['password'] = $value;  
+    }
+
+    
 }
