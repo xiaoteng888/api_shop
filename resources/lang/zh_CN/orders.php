@@ -2,13 +2,13 @@
 return [
     'labels' => [
         'Orders' => '订单',
-        'orders' => '订单',
+        'orders' => '列表',
     ],
     'fields' => [
         'no' => '订单流水号',
         'user_id' => '下单用户id',
         'address' => '收货地址',
-        'total_amount' => '订单总金额',
+        'TotalAmount' => '订单总金额',
         'remark' => '订单备注',
         'paid_at' => '支付时间',
         'payment_method' => '支付方式',

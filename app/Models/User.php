@@ -6,10 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 
 class User extends Authenticatable implements MustVerifyEmail,JWTSubject
 {
     use Notifiable;
+    use HasDateTimeFormatter;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        
     ];
 
     public function addresses()

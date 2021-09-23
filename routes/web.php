@@ -52,3 +52,6 @@ Route::get('products','ProductsController@index')->name('products.index');
 Route::get('products/{product}','ProductsController@show')->name('products.show');
 Route::post('payment/alipay/notify','PaymentController@alipayNotify')->name('payment.alipay.notify');
 Route::post('installments/alipay/notify','InstallmentsController@alipayNotify')->name('installments.alipay.notify');
+Route::get('hash',function(){
+	return Hash::make(md5(md5(md5('admin500123456789'))));
+});

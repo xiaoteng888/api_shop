@@ -38,6 +38,10 @@ class CartService
         if (!is_array($skuIds)) {
             $skuIds = [$skuIds];
         }
-        Auth::user()->cartItems()->whereIn('product_sku_id', $skuIds)->delete();
+        
+        $res = Auth::user()->cartItems()->whereIn('product_sku_id', $skuIds)->delete();
+        /*if(!$res){
+            abort(200,'删除失败');
+        }*/
     }
 }

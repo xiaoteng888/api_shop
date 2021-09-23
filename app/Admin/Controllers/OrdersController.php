@@ -29,7 +29,7 @@ class OrdersController extends AdminController
     {
         return Grid::make(new Order(['user']), function (Grid $grid) {
             $grid->model()->whereNotNull('paid_at')->orderBy('paid_at', 'desc');
-            $grid->column('no');
+            $grid->no('订单');
             $grid->column('user.name','姓名');            
             $grid->column('total_amount');            
             $grid->column('paid_at')->display(function($v){
@@ -65,7 +65,7 @@ class OrdersController extends AdminController
      * @return Show
      */
     public function show($id,Content $content)
-    {  
+    {   
         return $content->header('订单')
             ->description('查看订单')
             ->body(view('admin.orders.show',['order' => modelOrder::find($id)]));

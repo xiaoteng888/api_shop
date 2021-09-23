@@ -47,7 +47,7 @@ class Installment extends Model
 
     public function items()
     {
-        return $this->hasMany(InstallmentItem::class);
+        return $this->hasMany(InstallmentItem::class);//->orderBy('sequence','desc');
     }
 
     public static function findAvailableNo()

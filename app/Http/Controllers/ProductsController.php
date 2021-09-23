@@ -104,4 +104,5 @@ class ProductsController extends Controller
     	$favorites = $request->user()->favoriteProducts()->paginate();
     	return view('products.favorites',['favorites' => $favorites]);
     }
+
 }

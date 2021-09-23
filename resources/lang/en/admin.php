@@ -2,7 +2,7 @@
 
 return [
     'scaffold' => [
-        'header'            => 'Scaffold',
+        'header'            => '代码生成器',
         'choose'            => 'choose',
         'table'             => 'Table',
         'model'             => 'Model',
@@ -194,6 +194,7 @@ return [
         'Q_EXCEED_SIZE_LIMIT'    => 'Sorry, the maximum file-size has been exceeded!',
         'F_DUPLICATE'            => 'Duplicate file.',
         'confirm_delete_file'    => 'Are you sure delete this file from server?',
+        'dimensions'             => 'The image dimensions is invalid.',
     ],
     'import_extension_confirm'  => 'Are you sure import the extension?',
     'quick_create'              => 'Quick create',
