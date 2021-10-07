@@ -55,7 +55,7 @@ class InstallmentsController extends Controller
         }catch(\Exception $e){
             return response('数据不正确');
         }
-        reutrn app('alipay')->success();
+        return app('alipay')->success();
     }
 
     public function alipayNotify()
