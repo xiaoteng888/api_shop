@@ -1,0 +1,1550 @@
+{
+	"info": {
+		"_postman_id": "c8a56cc6-3368-4a7d-bd14-5dcf1637ff8a",
+		"name": "shop",
+		"description": "电商网站接口API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "天气接口",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.weather.com.cn/data/sk/101010100.html",
+					"protocol": "http",
+					"host": [
+						"www",
+						"weather",
+						"com",
+						"cn"
+					],
+					"path": [
+						"data",
+						"sk",
+						"101010100.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发送图片验证码",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "15108244863",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/captchas",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"captchas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "发送短信验证码",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "captcha_key",
+							"value": "captcha_keymDCvSOzwSTstsyA",
+							"type": "text"
+						},
+						{
+							"key": "captcha_code",
+							"value": "zr3e",
+							"type": "text"
+						},
+						{
+							"key": "key",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}/api/v1/verificationCodes",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"verificationCodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户手机注册",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "kobe3",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "13981012385",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "verification_key",
+							"value": "verificationCode_lRFB8y6ls76LAYb",
+							"type": "text"
+						},
+						{
+							"key": "verification_code",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "15108244863",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/authorizations",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"authorizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刷新token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zaG9wLnRlc3RcL2FwaVwvdjFcL2F1dGhvcml6YXRpb25zIiwiaWF0IjoxNjMwMTU0MTAxLCJleHAiOjE2MzAxNTc3MDEsIm5iZiI6MTYzMDE1NDEwMSwianRpIjoiaTRzd2VjWkVwY25CSWw2byIsInN1YiI6MTA2LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.U8Ly5IWVpynl5vQvtm1Tnn60MEk19nZ6vz1ulYNO938",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/authorizations/current",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"authorizations",
+						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除TOKEN",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zaG9wLnRlc3RcL2FwaVwvdjFcL2F1dGhvcml6YXRpb25zIiwiaWF0IjoxNjMwMTU0Mjg2LCJleHAiOjE2MzAxNTc4ODYsIm5iZiI6MTYzMDE1NDI4NiwianRpIjoiYlhEeU5LTlNRNllDc1RTUSIsInN1YiI6MTA2LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ynNCUGdkjCVSuxrh7mFCbTokCf-1meSRVbAKnO6EJ0k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/authorizations/current",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"authorizations",
+						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户邮箱注册",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "kobe4",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "6051843258@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}/api/v1/userEmails",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"userEmails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "当前登录用户信息",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取某个用户数据",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/users/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "商品列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/products?order=price_desc",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "necessitatibus",
+							"disabled": true
+						},
+						{
+							"key": "category_id",
+							"value": "30",
+							"disabled": true
+						},
+						{
+							"key": "order",
+							"value": "price_desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "类目递归调用接口",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "parent_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/categories?parent_id=30",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "parent_id",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "商品详情",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/products/:product_id?include=skus",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products",
+						":product_id"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "skus"
+						}
+					],
+					"variable": [
+						{
+							"key": "product_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户收藏商品",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/products/:product/favorite",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products",
+						":product",
+						"favorite"
+					],
+					"variable": [
+						{
+							"key": "product",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取消收藏商品",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/products/:product/favorite",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products",
+						":product",
+						"favorite"
+					],
+					"variable": [
+						{
+							"key": "product",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "商品加入购物车",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/cart?sku_id=100&amount=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cart"
+					],
+					"query": [
+						{
+							"key": "sku_id",
+							"value": "100"
+						},
+						{
+							"key": "amount",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "购物车列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/cart?include=productSku",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cart"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "productSku"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户地址列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/user_addresses",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user_addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "移除购物车",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/cart/:sku",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						":sku"
+					],
+					"variable": [
+						{
+							"key": "sku",
+							"value": "33"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "检查优惠码",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/coupon_codes/:code",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"coupon_codes",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "OCHWA4A1RCXZXTSR"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "提交订单",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "remark",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "address_id",
+							"value": "205",
+							"type": "text"
+						},
+						{
+							"key": "items[0][sku_id]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "coupon_code",
+							"value": "ORHNWIKVBKSV7DQZ",
+							"type": "text"
+						},
+						{
+							"key": "items[0][amount]",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/orders",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "remark",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "address_id",
+							"value": "209",
+							"disabled": true
+						},
+						{
+							"key": "items",
+							"value": "array()",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "创建收货地址",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "province",
+							"value": "四川",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "德阳",
+							"type": "text"
+						},
+						{
+							"key": "district",
+							"value": "什邡",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "一个小地方",
+							"type": "text"
+						},
+						{
+							"key": "zip",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "contact_name",
+							"value": "帅帅",
+							"type": "text"
+						},
+						{
+							"key": "contact_phone",
+							"value": "1346784464",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/user_addresses",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user_addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改收货地址",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "province",
+							"value": "山东",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "济南",
+							"type": "text"
+						},
+						{
+							"key": "district",
+							"value": "趵突泉",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "美女多",
+							"type": "text"
+						},
+						{
+							"key": "zip",
+							"value": "2134",
+							"type": "text"
+						},
+						{
+							"key": "contact_name",
+							"value": "大帅",
+							"type": "text"
+						},
+						{
+							"key": "contact_phone",
+							"value": "13981012383",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/user_addresses/:user_address",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user_addresses",
+						":user_address"
+					],
+					"variable": [
+						{
+							"key": "user_address",
+							"value": "208"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除收货地址",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/user_addresses/:user_address",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user_addresses",
+						":user_address"
+					],
+					"variable": [
+						{
+							"key": "user_address",
+							"value": "207"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "收藏商品列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/products/favorites",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"favorites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "订单列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/orders?include=user,items.product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "user,items.product"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "订单详情",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/orders/:order?include=items.productSku,items.product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						":order"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "items.productSku,items.product"
+						}
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "144"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "调用支付",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/payment/:order/alipay",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						":order",
+						"alipay"
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "144"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "支付宝前端回调",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/payment/alipay/return",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						"alipay",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "分期付款列表",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/installments?include=items,user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"installments"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "items,user"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "创建分期付款订单",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/payment/:order/installment?count=3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						":order",
+						"installment"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "3"
+						}
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "144"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "分期付款详情",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/installments/:installment?include=user,order,items",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"installments",
+						":installment"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "user,order,items"
+						},
+						{
+							"key": "sort[items.sequence]",
+							"value": "-",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "installment",
+							"value": "23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "调起分期支付宝支付",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/installments/:installment/alipay",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"installments",
+						":installment",
+						"alipay"
+					],
+					"variable": [
+						{
+							"key": "installment",
+							"value": "23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "确认收货",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/orders/:order/received",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						":order",
+						"received"
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "135"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "商品评价页面",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/orders/:order/review?include=items.productSku,items.product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						":order",
+						"review"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "items.productSku,items.product"
+						}
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "135"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "提交商品评价",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reviews[0][rating]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "reviews[0][review]",
+							"value": "宝贝真棒",
+							"type": "text"
+						},
+						{
+							"key": "reviews[0][id]",
+							"value": "230",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/orders/:order/review",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						":order",
+						"review"
+					],
+					"query": [
+						{
+							"key": "reviews[0]['rating']",
+							"value": "5",
+							"disabled": true
+						},
+						{
+							"key": "reviews[0]['review']",
+							"value": "宝贝真棒",
+							"disabled": true
+						},
+						{
+							"key": "reviews[0]['id']",
+							"value": "203",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "135"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "退款操作",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reason",
+							"value": "太差了",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/orders/:order/apply_refund",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						":order",
+						"apply_refund"
+					],
+					"variable": [
+						{
+							"key": "order",
+							"value": "135"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "众筹下单接口",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_user2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "address_id",
+							"value": "205",
+							"type": "text"
+						},
+						{
+							"key": "sku_id",
+							"value": "99",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/crowdfunding_orders",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"crowdfunding_orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
