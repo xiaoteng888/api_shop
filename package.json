@@ -1,31 +1,41 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "axios": "^0.19",
-        "bootstrap": "^4.0.0",
-        "cross-env": "^7.0",
-        "jquery": "^3.2",
-        "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.19",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.3",
-        "china-area-data": "^5.0.1",
-        "sweetalert": "^2.1.2"
-    }
+  "name": "shop",
+  "version": "0.0.2",
+  "description": "A WePY project",
+  "main": "weapp/app.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/wepy build --watch",
+    "build": "cross-env NODE_ENV=production ./node_modules/.bin/wepy build --no-cache",
+    "clean": "rm -rf weapp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "wepy": {
+    "module-a": false,
+    "./src/components/list": "./src/components/wepy-list.wpy"
+  },
+  "author": "kobe",
+  "license": "MIT",
+  "dependencies": {
+    "@wepy/x": "^2.0.2",
+    "@wepy/core": "^2.0.0-alpha.16",
+    "miniprogram-slide-view": "0.0.3"
+  },
+  "devDependencies": {
+    "@wepy/cli": "^2.0.0-alpha.28",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@wepy/babel-plugin-import-regenerator": "0.0.2",
+    "babel-eslint": "^7.2.1",
+    "cross-env": "^5.1.3",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-plugin-html": "^2.0.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "wepy-eslint": "^1.5.3",
+    "less": "^3.8.1",
+    "@wepy/compiler-babel": "^2.0.1",
+    "@wepy/compiler-less": "^2.0.1"
+  }
 }
