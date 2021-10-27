@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Exceptions\InvalidRequestException;
+use Illuminate\Auth\AuthenticationException;
 use App\Http\Requests\Api\WeappAuthorizationRequest;
 use App\Models\User;
 
@@ -52,7 +53,7 @@ class AuthorizationsController extends Controller
         $data = $miniProgram->auth->session($code);
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
         if(isset($data['errcode'])){
-            throw new InvalidRequestException('code不正确',401);
+            throw new AuthenticationException('code不正确');
         }
         // 找到 openid 对应的用户
         $user = User::where('weapp_openid',$data['openid'])->first();
@@ -71,7 +72,7 @@ class AuthorizationsController extends Controller
             $credentials['password'] = $request->password;
             // 验证用户名和密码是否正确
             if(!auth('api')->once($credentials)){
-                throw new InvalidRequestException('用户名和密码不正确',403);
+                throw new InvalidRequestException('用户名和密码不正确',401);
             }
             // 获取对应的用户
             $user = auth('api')->getUser();
