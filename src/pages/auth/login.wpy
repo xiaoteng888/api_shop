@@ -38,7 +38,7 @@
       </div>
       
       <div class="weui-cells__tips">
-        如果你还没有 Larabbs 用户可以
+        如果你还没有帐号可以
         <a url="/pages/auth/register">注册新用户</a>
       </div>
 
@@ -111,7 +111,7 @@
         }
 
         try {
-          wait this.$store.dispatch('login',this.form)
+          await this.$store.dispatch('login',this.form)
 
           wx.navigateBack()
 
