@@ -58,14 +58,14 @@ const checkToken = async () => {
 }
 
 // 需要登录携带token请求
-const authRequest = async(url,options = {},showLoading = true) => {
+const authRequest = async (url, options = {}, showLoading = true) => {
 	await checkToken()
 
 	options.header = {
 		Authorization: 'Bearer' + store.getters.accessToken
 	}
 
-	return await request(url,options,showLoading)
+	return await request(url, options, showLoading)
 }
 
 export {

@@ -36,9 +36,9 @@
           </div>
         </div>
       </div>
-      
+
       <div class="weui-cells__tips">
-        如果你还没有帐号可以
+        如果你还没有 shop 用户可以
         <a url="/pages/auth/register">注册新用户</a>
       </div>
 
@@ -56,7 +56,6 @@
 </config>
 <script>
   import wepy from '@wepy/core'
-  import { login } from '@/api/auth'
   import store from '@/store'
   import WeValidator from 'we-validator'
 
@@ -66,15 +65,14 @@
       // 用户名
       form: {},
       // 是否有错
-      errors: {},
+      hasError: false,
       // 错误信息
       errorMessage: ''
     },
-    onReady(){
+    onReady() {
       this.initValidator()
     },
     methods: {
-
       initValidator() {
         // 实例化
         this.validatorInstance = new WeValidator({
@@ -106,17 +104,16 @@
       async submit() {
         this.error = {}
         // 提交时重置错误
-        if(!this.validatorInstance.checkData(this.form)){
+        if (!this.validatorInstance.checkData(this.form)) {
           return
         }
 
         try {
-          await this.$store.dispatch('login',this.form)
+          await this.$store.dispatch('login', this.form)
 
           wx.navigateBack()
-
-        } catch(err) {
-          this.errorMessage = err.response.data.msg
+        } catch (err) {
+          this.errorMessage = err.response.data.message
         }
       }
     },
@@ -124,10 +121,8 @@
     async onShow() {
       try {
         await this.$store.dispatch('login')
-
         wx.navigateBack()
-
-      } catch(err) {
+      } catch (err) {
       }
     }
   })

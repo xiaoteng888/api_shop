@@ -16,7 +16,11 @@
   </div>
 </div>
 </template>
-
+</config> 
+    {
+      navigationBarTitleText: '我的',
+    }
+</config>    
 <script>
   import wepy from '@wepy/core'
   import store from '@/store'
@@ -24,9 +28,6 @@
 
   wepy.page({
     store,
-    config: {
-      navigationBarTitleText: '我的'
-    },
     computed: {
       ...mapGetters(['isLoggedIn','user'])
     },

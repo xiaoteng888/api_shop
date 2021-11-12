@@ -11,16 +11,25 @@ export function refresh(token){
 	return request('authorizations/current',{
 		method:'put',
 		header: {
-			'Authorization':'Bearer'+token
+			'Authorization': 'Bearer' + token
 		}
 	})
 }
 
-export function logout(token){
+export function logout(token) {
 	return request('authorizations/current',{
 		method: 'delete',
 		header: {
 			'Authorization': 'Bearer' + token
+		}
+	})
+}
+
+export function getCaptcha(phone){
+	return request('captchas',{
+		method: 'post',
+		data: {
+			phone: phone
 		}
 	})
 }
