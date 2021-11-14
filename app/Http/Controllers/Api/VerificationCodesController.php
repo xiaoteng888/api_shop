@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Api\VerificationCodeRequest;
 use Illuminate\Support\Str;
 use App\Exceptions\InvalidRequestException;
+use Illuminate\Auth\AuthenticationException;
 
 class VerificationCodesController extends Controller
 {
