@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Exceptions\InvalidRequestException;
 use App\Http\Resources\UserResource;
+use Illuminate\Auth\AuthenticationException;
 
 class UsersController extends Controller
 {
