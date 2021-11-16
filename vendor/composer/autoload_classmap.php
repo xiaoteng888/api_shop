@@ -94,6 +94,7 @@ return array(
     'App\\Http\\Requests\\Api\\UserAddressRequest' => $baseDir . '/app/Http/Requests/Api/UserAddressRequest.php',
     'App\\Http\\Requests\\Api\\UserRequest' => $baseDir . '/app/Http/Requests/Api/UserRequest.php',
     'App\\Http\\Requests\\Api\\VerificationCodeRequest' => $baseDir . '/app/Http/Requests/Api/VerificationCodeRequest.php',
+    'App\\Http\\Requests\\Api\\WeappAuthorizationRequest' => $baseDir . '/app/Http/Requests/Api/WeappAuthorizationRequest.php',
     'App\\Http\\Requests\\ApplyRefundRequest' => $baseDir . '/app/Http/Requests/ApplyRefundRequest.php',
     'App\\Http\\Requests\\CrowdFundingOrderRequest' => $baseDir . '/app/Http/Requests/CrowdFundingOrderRequest.php',
     'App\\Http\\Requests\\OrderRequest' => $baseDir . '/app/Http/Requests/OrderRequest.php',

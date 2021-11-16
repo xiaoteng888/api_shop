@@ -741,6 +741,7 @@ class ComposerStaticInit75c612a1854cef342f1a5613ffe93f13
         'App\\Http\\Requests\\Api\\UserAddressRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Api/UserAddressRequest.php',
         'App\\Http\\Requests\\Api\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Api/UserRequest.php',
         'App\\Http\\Requests\\Api\\VerificationCodeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Api/VerificationCodeRequest.php',
+        'App\\Http\\Requests\\Api\\WeappAuthorizationRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Api/WeappAuthorizationRequest.php',
         'App\\Http\\Requests\\ApplyRefundRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ApplyRefundRequest.php',
         'App\\Http\\Requests\\CrowdFundingOrderRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CrowdFundingOrderRequest.php',
         'App\\Http\\Requests\\OrderRequest' => __DIR__ . '/../..' . '/app/Http/Requests/OrderRequest.php',
