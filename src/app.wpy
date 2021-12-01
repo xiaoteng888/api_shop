@@ -29,7 +29,7 @@ wepy.app({
 <config>
 {
     pages: [
-      'pages/index',
+      'pages/products/index',
       'pages/user',
       'pages/auth/login',
       'pages/auth/register'
@@ -42,7 +42,7 @@ wepy.app({
     },
     tabBar: {
       list: [{
-        pagePath: 'pages/index',
+        pagePath: 'pages/products/index',
         text: '首页',
         iconPath: 'assets/images/index.png',
         selectedIconPath: 'assets/images/index_selected.png'

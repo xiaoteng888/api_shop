@@ -8,7 +8,8 @@ const getDefaultState = () => {
   return {
     user: auth.getUser(),
     accessToken: auth.getToken(),
-    accessTokenExpiredAt: auth.getTokenExpiredAt()
+    accessTokenExpiredAt: auth.getTokenExpiredAt(),
+    searchValue: ''
   }
 }
 
@@ -78,6 +79,10 @@ const mutations = {
   },
   resetState: (state) => {
     Object.assign(state,getDefaultState())
+  },
+  // 更新搜索值的事件类型
+  UPDATE_SEARCH_VALUE(state, searchValue) {
+    state.searchValue = searchValue
   }
 }
 

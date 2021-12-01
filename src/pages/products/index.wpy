@@ -1,0 +1,156 @@
+<style lang="less">
+  .weui-media-box__info__meta {
+    margin: 0;
+    font-size: 12px;
+  }
+  .topic-info {
+    margin-top: 5px;
+  }
+  .topic-title {
+    white-space: normal;
+    font-size: 14px;
+  }
+  .avatar {
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 50px;
+    height: 50px;
+  }
+  .reply-count {
+    background-color: #d8d8d8;
+    float: right;
+  }
+  .navbar-form {
+    margin-left: 20px;
+    width: 300px;
+  }
+  .form-group input {
+    padding: 4px;
+    border: 1px solid #ddd;
+    width: 300px;
+  }
+</style>
+<template>
+<div class="page">
+  <div class="page__bd">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd">商品列表</div>
+      <div class="weui-panel__bd">
+        <div class="navbar-form navbar-left hidden-sm">
+          <div class="form-group">
+            <input
+              v-model.trim="searchValue"
+              type="text"
+              class="form-control search-input mac-style"
+              placeholder="搜索"
+              @keyup.enter="search"
+              @input="updateSearchValue"
+            >
+          </div>
+        </div>
+        <div v-for="product in products" :key="product.id">
+          <a url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" :src="product.image" />
+            </div>
+            <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <div class="weui-media-box__title">{{ product.title }}</div>
+              <div class="weui-media-box__desc">{{ product.price }}</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="weui-loadmore weui-loadmore_line" v-if="noMoreData">
+          <div class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多数据</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<config>
+  {
+    enablePullDownRefresh: true,
+  }
+</config>
+<script>
+  import wepy from '@wepy/core'
+  import { getProducts } from '@/api/product'
+  import store from '@/store'
+
+  wepy.page({
+    store,
+    data: {
+      //商品数据
+      products: [],
+      //当前分页
+      page: 1,
+      //是否还有更多数据
+      noMoreData: false,
+      // 是否在加载中
+      isLoading: false,
+      //搜索值
+      value: '',
+    },
+    async onLoad() {
+      this.loadProducts()
+    },
+    async onPullDownRefresh() {
+      this.page = 1
+      this.noMoreData = false
+      await this.loadProducts(true)
+      wx.stopPullDownRefresh()
+    },
+    async onReachBottom() {
+      //如果没有更多内容，直接返回
+      if(this.noMoreData || this.isLoading){
+        return
+      }
+      this.isLoading = true
+      this.page += 1
+      await this.loadProducts()
+      this.isLoading = false
+    },
+    // 添加计算属性
+    computed: {
+      searchValue: {
+        get() {
+          return this.$store.state.searchValue
+        },
+        set(newValue) {
+          this.value = newValue
+        }
+      }
+    },
+    methods: {
+      //获取商品数据
+      async loadProducts(reset = false) {
+
+        //请求商品列表接口
+        const productsResponse = await getProducts({
+          page: this.page,
+          include: 'skus',
+          search: this.value
+        })
+        // 将数据合并到 this.products
+        this.products = reset ? productsResponse.data.products.data : this.products.concat(productsResponse.data.products.data)
+
+        const pagination = productsResponse.data.products
+        // 根据分页设置是否还有更多数据
+        if(pagination.current_page === pagination.last_page){
+          this.noMoreData = true
+        }
+      },
+      // 更新 searchValue
+      updateSearchValue() {
+        this.$store.commit('UPDATE_SEARCH_VALUE', this.value)
+      },
+      // 搜索提交
+      async search(){
+        await this.loadProducts()
+      }
+    }
+  })
+</script>
